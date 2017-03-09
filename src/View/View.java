@@ -1,5 +1,6 @@
 package View;
 
+import Model.Model;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -17,43 +18,35 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class View implements Initializable {
+    private Model model;
+
     @FXML
     private Canvas drawvas;
 
-    private int n=4;
-    private char[][] array=new char[n][n];
+
 
     private GraphicsContext gc;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        String line;
-        try {
-            BufferedReader input = new BufferedReader(new FileReader("C:\\Users\\mark\\Dropbox\\jaar 2\\OOP3\\opdr\\week 2\\quicksort\\untitled1\\src\\TextFile\\dict.txt"));
-            while ((line=input.readLine())!= null){
-                System.out.println(line);
-            }
-        } catch ( IOException e) {
-            e.printStackTrace();
+
+
+    }
+    public void InitModel(Model model){
+        this.model = model;
+        for (int i=0;i<model.getArraysize(); i++) {
+        for (int j=0;j<model.getArraysize(); j++) {
+            DrawRectangle(i,j);
         }
-
-        //setting up the 2d array.
-
-        for (int i = 0; i<array.length;i++){
-            for (int j= 0; j<array.length;j++) {
-                array[i][j] = CreateChar();
-                DrawRectangle(i,j,Color.ALICEBLUE);
-                System.out.println(array[i][j]);
-            }
         }
     }
 
     public void DrawRectangle(int xaxis, int yaxis,Color col){
 
         gc = drawvas.getGraphicsContext2D();
-        double xoffset=  (drawvas.getWidth()/n);
-        double yoffset=  (drawvas.getHeight()/n);
+        double xoffset=  (drawvas.getWidth()/model.getArraysize());
+        double yoffset=  (drawvas.getHeight()/model.getArraysize());
         gc.setFill(col);
         gc.setStroke(Color.DARKGREY);
         gc.fillRect(xaxis*xoffset,yaxis*yoffset,xoffset,yoffset);
@@ -62,10 +55,14 @@ public class View implements Initializable {
 
 
     }
-
-    public char CreateChar(){
-        Random r = new Random();
-        char c = (char)(r.nextInt(26) + 'a');
-        return c;
+    public void DrawRectangle(int xaxis, int yaxis){
+        gc = drawvas.getGraphicsContext2D();
+        double xoffset=  (drawvas.getWidth()/model.getArraysize());
+        double yoffset=  (drawvas.getHeight()/model.getArraysize());
+        gc.setFill(Color.ALICEBLUE);
+        gc.setStroke(Color.DARKGREY);
+        gc.fillRect(xaxis*xoffset,yaxis*yoffset,xoffset,yoffset);
+        gc.strokeRect(xaxis*xoffset,yaxis*yoffset,xoffset,yoffset);
     }
+
 }

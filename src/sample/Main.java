@@ -1,5 +1,6 @@
 package sample;
 
+import Model.Model;
 import View.View;
 
 import javafx.application.Application;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     private View view;
+    private Model model;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -17,9 +19,20 @@ public class Main extends Application {
         this.view = new View();
         loader.setController(view);
         GridPane root = loader.load();
+
+
+        //Creating and connecting model
+        model = new Model();
+        view.InitModel(model);
+
+
+
+        // futher initializatipn;;
         primaryStage.setTitle("Boggle");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+
     }
 
 
