@@ -1,4 +1,4 @@
-package sample;
+package View;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class View implements Initializable {
     @FXML
     private Canvas drawvas;
 
