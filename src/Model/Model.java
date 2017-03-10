@@ -91,8 +91,5 @@ public class Model {
         return array;
     }
 
-    public void Updatemodel(){
-        CreateArray();
-        //FindNeightbours
-    }
+
 }
