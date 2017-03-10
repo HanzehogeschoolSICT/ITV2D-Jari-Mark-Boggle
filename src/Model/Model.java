@@ -61,23 +61,39 @@ public class Model {
     }
 
     public void findneighb(Cell cell,ArrayList<Cell> found){
+        boolean valid = false;
         found.add(cell);
-        //add boolean  if statement to check if in array yes or no to go on else if still false go to end cuz fock die
-                System.out.println(cell.getContent());
-                for (int y =cell.getY()-1;y<= cell.getY()+1; y++){
-                    for (int x = cell.getX()-1; x<=cell.getX()+1; x++){
-                        if (!(cell.getX()==x && cell.getY()==y)&& x>= 0&& y>=0 && x<arraysize && y<arraysize){
-                            System.out.print(array[x][y].getContent());
-                            found.add(array[x][y]);
-                        }
-                    }
-
-                }
-        System.out.println();
-        for (Cell a: found){
-            System.out.println(a.getContent());
+        String word = "";
+        for (Cell c: found){
+            word += c.getContent();
         }
-        System.out.println();
+        //add boolean  if statement to check if in array yes or no to go on else if still false go to end cuz fock die
+        if (wordlist.contains(word)){
+            System.out.println("i am done: "+ word);
+        }
+        for (String a: wordlist){
+            if (a.startsWith(word)){
+                valid= true;
+            }
+
+        }
+               if (valid) {
+                   for (int y = cell.getY() - 1; y <= cell.getY() + 1; y++) {
+                       for (int x = cell.getX() - 1; x <= cell.getX() + 1; x++) {
+                           if (!(cell.getX() == x && cell.getY() == y) && x >= 0 && y >= 0 && x < arraysize && y < arraysize&& !found.contains(array[x][y])) {
+                               System.out.print(word);
+                                findneighb(array[x][y],found);
+                           }
+                       }
+
+                   }
+                   System.out.println();
+
+                   System.out.println();
+               }
+               else {
+
+               }
     }
 
 
