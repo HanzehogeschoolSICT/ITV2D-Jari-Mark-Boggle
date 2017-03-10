@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Model {
 
-    private int arraysize=4;
+    private int arraysize=8;
     private char[][] array=new char[arraysize][arraysize];
 
     public Model(){
@@ -52,5 +52,8 @@ public class Model {
     }
     public int getArraysize(){
         return arraysize;
+    }
+    public char[][] getArray(){
+        return array;
     }
 }

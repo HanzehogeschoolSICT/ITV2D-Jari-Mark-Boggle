@@ -1,5 +1,6 @@
 package sample;
 
+import Controller.Controller;
 import Model.Model;
 import View.View;
 
@@ -24,6 +25,7 @@ public class Main extends Application {
         //Creating and connecting model
         model = new Model();
         view.InitModel(model);
+        Controller control = new Controller(model,view);
 
 
 

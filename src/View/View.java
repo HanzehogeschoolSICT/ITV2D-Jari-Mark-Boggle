@@ -3,11 +3,18 @@ package View;
 import Model.Model;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontSmoothingType;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -22,14 +29,11 @@ public class View implements Initializable {
 
     @FXML
     private Canvas drawvas;
-
-
-
     private GraphicsContext gc;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+     gc = drawvas.getGraphicsContext2D();
 
 
     }
@@ -43,7 +47,7 @@ public class View implements Initializable {
     }
 
     public void DrawRectangle(int xaxis, int yaxis,Color col){
-
+        int tetheight=40;
         gc = drawvas.getGraphicsContext2D();
         double xoffset=  (drawvas.getWidth()/model.getArraysize());
         double yoffset=  (drawvas.getHeight()/model.getArraysize());
@@ -56,13 +60,40 @@ public class View implements Initializable {
 
     }
     public void DrawRectangle(int xaxis, int yaxis){
-        gc = drawvas.getGraphicsContext2D();
+
         double xoffset=  (drawvas.getWidth()/model.getArraysize());
         double yoffset=  (drawvas.getHeight()/model.getArraysize());
-        gc.setFill(Color.ALICEBLUE);
+        double textheight=yoffset/4;
+
+
         gc.setStroke(Color.DARKGREY);
+
+        InnerShadow is = new InnerShadow();
+        is.setOffsetX(2);
+        is.setOffsetY(2);
+        is.setColor(Color.DIMGREY);
+        gc.setFill(Color.ALICEBLUE);
+        gc.setEffect(is);
         gc.fillRect(xaxis*xoffset,yaxis*yoffset,xoffset,yoffset);
+
+        gc.setEffect(null);
+
+        gc.setFill(Color.BLACK);
+        gc.setFontSmoothingType(FontSmoothingType.LCD);
+        gc.setFont(Font.font("Helvetica", FontWeight.BOLD, textheight));
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.setTextBaseline(VPos.CENTER);
+        gc.fillText(Character.toString(model.getArray()[xaxis][yaxis]),xaxis*xoffset+xoffset/2,yaxis*yoffset+xoffset/2);
+        System.out.println(yaxis*yoffset+xoffset/2+textheight/2);
+
         gc.strokeRect(xaxis*xoffset,yaxis*yoffset,xoffset,yoffset);
+
+
+
+
+
+
+
     }
 
 }
