@@ -26,7 +26,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <ComboBox fx:id="combobox" onAction="#SetSize" prefHeight="25.0" prefWidth="116.0" promptText="4x4" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+            <ComboBox fx:id="combobox" onAction="#SetSize" prefHeight="25.0" prefWidth="116.0" promptText="3x3" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                <items>
                   <FXCollections fx:factory="observableArrayList" />
                </items>

@@ -14,6 +14,7 @@ import java.util.concurrent.locks.Lock;
  * Created by mark on 9-3-2017.
  */
 public class Model {
+    private int as;
 
     private int arraysize=3;
     private Cell[][] array;
@@ -27,7 +28,8 @@ public class Model {
 
         for (int x = 0; x<array.length;x++){
             for (int y= 0; y<array.length;y++) {
-                findneighb(array[y][x], "");
+                ArrayList<Cell> found= new ArrayList<Cell>();
+               findneighb(array[y][x],found);
             }
         }
     }
@@ -58,33 +60,22 @@ public class Model {
         }
     }
 
-    public void findneighb(Cell cell,String word){
-        String newword = word +cell.getContent();
-        boolean valid = false;
-        for (int y =cell.getY()-1;y<= cell.getY()+1; y++){
-            for (int x = cell.getX()-1; x<=cell.getX()+1; x++){
-                if (!(cell.getX()==x && cell.getY()==y)&& x>= 0&& y>=0 && x<arraysize && y<arraysize){
-                    for (String a: wordlist) {
-                        if (a.contains(newword)) {
-                            System.out.println(sb.toString());
-                            findneighb(array[x][y], sb.toString());
-                            valid = true;
-                        }
-                        else{
-                            continue;
+    public void findneighb(Cell cell,ArrayList<Cell> found){
+        System.out.println(cell.getContent());
+                for (int y =cell.getY()-1;y<= cell.getY()+1; y++){
+                    for (int x = cell.getX()-1; x<=cell.getX()+1; x++){
+                        if (!(cell.getX()==x && cell.getY()==y)&& x>= 0&& y>=0 && x<arraysize && y<arraysize){
+                            System.out.print(array[x][y].getContent());
                         }
                     }
-                    if (valid)
-                        sb.delete(0,sb.length());
-                        continue;
-
 
                 }
-            }
-
-        }
-
+        System.out.println();
+        System.out.println();
     }
+
+
+
 
 
 
