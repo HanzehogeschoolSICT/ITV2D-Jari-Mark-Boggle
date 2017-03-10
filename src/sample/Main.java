@@ -7,25 +7,35 @@ import View.View;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
     private View view;
     private Model model;
+    private Controller controller;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/sample.fxml"));
+        this.controller = new Controller();
+        this.model = new Model();
         this.view = new View();
+        // Creating main pane;
+        BorderPane root = new BorderPane();
+
+
+        // setting up the center view; // init
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/sample.fxml"));
         loader.setController(view);
-        GridPane root = loader.load();
-
-
-        //Creating and connecting model
-        model = new Model();
+        root.setCenter(loader.load());
         view.InitModel(model);
-        Controller control = new Controller(model,view);
+
+        // setting up the top controlloader. // init
+        FXMLLoader controlloader = new FXMLLoader(getClass().getResource("/Controller/sample.fxml"));
+        controlloader.setController(controller);
+        root.setTop(controlloader.load());
+        controller.Init(model,view);
 
 
 

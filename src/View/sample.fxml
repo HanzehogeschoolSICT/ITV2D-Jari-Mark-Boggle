@@ -5,14 +5,15 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" >
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
+      <RowConstraints />
    </rowConstraints>
    <children>
-      <Canvas fx:id="drawvas" height="500.0" width="500.0" />
+      <Canvas fx:id="drawvas" height="500.0" width="500.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
    </children>
 </GridPane>
