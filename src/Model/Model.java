@@ -61,16 +61,22 @@ public class Model {
     }
 
     public void findneighb(Cell cell,ArrayList<Cell> found){
-        System.out.println(cell.getContent());
+        found.add(cell);
+        //add boolean  if statement to check if in array yes or no to go on else if still false go to end cuz fock die
+                System.out.println(cell.getContent());
                 for (int y =cell.getY()-1;y<= cell.getY()+1; y++){
                     for (int x = cell.getX()-1; x<=cell.getX()+1; x++){
                         if (!(cell.getX()==x && cell.getY()==y)&& x>= 0&& y>=0 && x<arraysize && y<arraysize){
                             System.out.print(array[x][y].getContent());
+                            found.add(array[x][y]);
                         }
                     }
 
                 }
         System.out.println();
+        for (Cell a: found){
+            System.out.println(a.getContent());
+        }
         System.out.println();
     }
 
