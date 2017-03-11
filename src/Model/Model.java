@@ -84,10 +84,11 @@ public class Model {
         int xmax = cell.getX()+1;
         int ymax = cell.getY()+1;
 
+        // searching for neighbours and thier content..
         for (;x <= xmax && x<arraysize; x++) {
             for (; y <= ymax && y<arraysize; y++) {
                 if (x >= 0 && y >= 0 && !visited[x][y]) {
-                    findneighb(array[x][y], visited,str);
+                    findneighb(array[x][y], visited,str); // recursive calling the method
                 }
             }
         }
