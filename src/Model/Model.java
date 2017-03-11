@@ -83,7 +83,7 @@ public class Model {
         int y= cell.getY();
         int xmax = cell.getX()+1;
         int ymax = cell.getY()+1;
-        //add boolean  if statement to check if in array yes or no to go on else if still false go to end cuz fock die
+
         for (;x <= xmax && x<arraysize; x++) {
             for (; y <= ymax && y<arraysize; y++) {
                 if (x >= 0 && y >= 0 && !visited[x][y]) {
@@ -95,8 +95,6 @@ public class Model {
         visited[cell.getX()][cell.getY()]=false;
     }
 
-
-
     public boolean wordfound(String str){
             if (wordlist.contains(str)){
                 return true;
@@ -104,9 +102,6 @@ public class Model {
 
         return false;
     }
-
-
-
 
     // Setters and getters..
     public void setarraysize(int n){
