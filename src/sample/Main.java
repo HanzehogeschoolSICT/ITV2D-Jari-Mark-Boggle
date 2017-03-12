@@ -36,7 +36,7 @@ public class Main extends Application {
         FXMLLoader controlloader = new FXMLLoader(getClass().getResource("/Controller/Controller.fxml"));
         controlloader.setController(controller);
         root.setTop(controlloader.load());
-        controller.Init(model,view);
+        controller.Init(model,view,bottom);
         // setting up the bottom controller. //init
         FXMLLoader bottomloader = new FXMLLoader(getClass().getResource("/Controller/BottomController.fxml"));
         bottomloader.setController(bottom);

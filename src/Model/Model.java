@@ -22,6 +22,7 @@ public class Model {
     private ExecutorService exe;
     private HashMap<String,String> dict;
     private ArrayList<ArrayList<Cell>> allfound;
+    private int foundsize= 0;
 
 
 
@@ -92,6 +93,7 @@ public class Model {
     public void findallneighb() {
         System.out.println("-------");
        allfound= new ArrayList<>();
+       foundsize= 0;
         for (Cell[] c : array){
            for (Cell cell: c){
                ArrayList<Cell> found = new ArrayList<Cell>();
@@ -101,6 +103,7 @@ public class Model {
                cell.setVisited(false);
            }
        }
+
     }
 
     public void findneighb(Cell cell,  String str,ArrayList<Cell> found) {
@@ -109,11 +112,11 @@ public class Model {
         }
         else if (dict.get(str).equals("word")){
             System.out.println(str);
+            allfound.add(new ArrayList<Cell>());
             for (Cell c: found){
-                System.out.print(c.getContent());
+                allfound.get(allfound.size()-1).add(c);
             }
-            allfound.add(found);
-            System.out.println();
+
         }
         for (Cell neighbor: cell.getNeighbors()){
             if (!neighbor.Visited()) {
@@ -127,8 +130,9 @@ public class Model {
         }
 
     public ArrayList<ArrayList<Cell>> getallfound(){
-        return this.allfound;
+        return allfound;
     }
+
 
     // Setters and getters..
     public void setarraysize(int n){

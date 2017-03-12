@@ -21,6 +21,7 @@ public class Controller implements Initializable {
     private ComboBox combobox;
     private Model model;
     private View view;
+    private BottomController bottom;
 
 
 
@@ -38,19 +39,21 @@ public class Controller implements Initializable {
         int arraysize = Integer.parseInt(set.substring(0,set.indexOf("x")));
         model.setarraysize(arraysize);
         view.updateview();
+        bottom.update(model.getallfound());
+
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.view=view;
     for (int i= 2;i<=10;i++ ){
          combobox.getItems().add(i+"x"+i);}
-         Init(model,view);
+         Init(model,view, bottom);
     }
 
-    public void Init(Model model, View view){
+    public void Init(Model model, View view,BottomController bottom){
         this.model= model;
         this.view =view;
+        this.bottom= bottom;
     }
 }
