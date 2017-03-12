@@ -27,59 +27,51 @@ public class Model {
 
     public Model() {
         dictonary dictonary = new dictonary();
-        dict=dictonary.buildprefix("C:\\Users\\mark\\Dropbox\\jaar 2\\OOP3\\opdr\\week 2\\quicksort\\untitled1\\src\\TextFile\\dict.txt");
-        //ReadtxtFile();
-        //
-        // exe= Executors.newFixedThreadPool(5);
+        dict=dictonary.builddic("C:\\Users\\mark\\Dropbox\\jaar 2\\OOP3\\opdr\\week 2\\quicksort\\untitled1\\src\\TextFile\\dict.txt");
         CreateArray();
     }
 
     public void Constructneighbours(){
-
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length; j++) {
-                LinkedList<Cell> neighborlist= new LinkedList<Cell>();
+                LinkedList<Cell> neighbors= new LinkedList<>();
                 if (i-1> -1&&j-1> -1){
-                    neighborlist.add(array[i-1][j-1]);
+                    neighbors.add(array[i-1][j-1]);
                 }
 
                 if (i-1>-1){
-                    neighborlist.add(array[i-1][j]);
+                    neighbors.add(array[i-1][j]);
                 }
 
                 if (i-1> -1&&   j+1<array.length){
-                    neighborlist.add(array[i-1][j+1]);
+                    neighbors.add(array[i-1][j+1]);
                 }
 
                 if (j+1<array.length){
-                    neighborlist.add(array[i][j+1]);
+                    neighbors.add(array[i][j+1]);
                 }
 
                 if (j-1>-1){
-                    neighborlist.add(array[i][j-1]);
+                    neighbors.add(array[i][j-1]);
                 }
 
                 if (i+1<array.length && j-1>-1){
-                    neighborlist.add(array[i+1][j-1]);
+                    neighbors.add(array[i+1][j-1]);
                 }
 
                 if (i+1<array.length){
-                    neighborlist.add(array[i+1][j]);
+                    neighbors.add(array[i+1][j]);
                 }
                 if (i+1<array.length&& j+1<array.length){
-                    neighborlist.add(array[i+1][j+1]);
+                    neighbors.add(array[i+1][j+1]);
                 }
-
-
-                array[i][j].setNeighbors(neighborlist);
+                array[i][j].setNeighbors(neighbors);
             }
-
         }
     findallneighb();
     }
     public void CreateArray() {
         array = new Cell[arraysize][arraysize];
-
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length; j++) {
                     array[i][j] = new Cell(i, j, CreateChar(),false);
@@ -94,18 +86,6 @@ public class Model {
         Random r = new Random();
         char c = (char) (r.nextInt(26) + 'a');
         return c;
-    }
-
-    public void ReadtxtFile() {
-        String line;
-        try {
-            BufferedReader input = new BufferedReader(new FileReader("C:\\Users\\mark\\Dropbox\\jaar 2\\OOP3\\opdr\\week 2\\quicksort\\untitled1\\src\\TextFile\\dict.txt"));
-            while ((line = input.readLine()) != null) {
-                wordlist.add(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void findallneighb() {
@@ -136,15 +116,10 @@ public class Model {
         }
 
 
-
-
-
     // Setters and getters..
     public void setarraysize(int n){
         this.arraysize = n;
         CreateArray();
-       // Constructneighbours();
-
     }
     public int getArraysize(){
         return arraysize;

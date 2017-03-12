@@ -12,27 +12,25 @@ import java.util.Scanner;
  */
 public class dictonary {
 
-    public HashMap<String,String> buildprefix(String filepath) {
-        HashMap<String,String> dict = new HashMap<String, String>();
+    public HashMap<String,String> builddic(String filepath) {
+        HashMap<String,String> dic = new HashMap<>();
         String line;
         try {
             BufferedReader input = new BufferedReader(new FileReader(filepath));
             while ((line = input.readLine()) != null) {
                 for (int i = 0; i <= line.length(); i++) {
-                    String str = line.substring(0,i);
-
                     if (i==line.length()){
-                        dict.put(str,"word");
+                        dic.put(line,"word");
                 }
-                else if (dict.containsKey(str)!=true){
-                        dict.put(str,"prefix");
+                else if (dic.containsKey(line.substring(0,i))!=true){
+                        dic.put(line.substring(0,i),"prefix");
                     }
                 }
             }
             } catch(IOException e){
                 e.printStackTrace();
             }
-            return dict;
+            return dic;
         }
     }
 
