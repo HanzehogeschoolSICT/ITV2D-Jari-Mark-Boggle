@@ -36,42 +36,49 @@ public class Model {
     public void Constructneighbours(){
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length; j++) {
-                LinkedList<Cell> neighbors= new LinkedList<>();
-                if (i-1> -1&&j-1> -1){
-                    neighbors.add(array[i-1][j-1]);
-                }
 
-                if (i-1>-1){
-                    neighbors.add(array[i-1][j]);
-                }
-
-                if (i-1> -1&&   j+1<array.length){
-                    neighbors.add(array[i-1][j+1]);
-                }
-
-                if (j+1<array.length){
-                    neighbors.add(array[i][j+1]);
-                }
-
-                if (j-1>-1){
-                    neighbors.add(array[i][j-1]);
-                }
-
-                if (i+1<array.length && j-1>-1){
-                    neighbors.add(array[i+1][j-1]);
-                }
-
-                if (i+1<array.length){
-                    neighbors.add(array[i+1][j]);
-                }
-                if (i+1<array.length&& j+1<array.length){
-                    neighbors.add(array[i+1][j+1]);
-                }
-                array[i][j].setNeighbors(neighbors);
+                array[i][j].setNeighbors(possibleNeigbors(i,j));
             }
         }
     findallneighb();
     }
+
+
+    public LinkedList<Cell> possibleNeigbors(int i,int j){
+        LinkedList<Cell> neighbors= new LinkedList<>();
+        if (i-1> -1&&j-1> -1){
+            neighbors.add(array[i-1][j-1]);
+        }
+
+        if (i-1>-1){
+            neighbors.add(array[i-1][j]);
+        }
+
+        if (i-1> -1&&   j+1<array.length){
+            neighbors.add(array[i-1][j+1]);
+        }
+
+        if (j+1<array.length){
+            neighbors.add(array[i][j+1]);
+        }
+
+        if (j-1>-1){
+            neighbors.add(array[i][j-1]);
+        }
+
+        if (i+1<array.length && j-1>-1){
+            neighbors.add(array[i+1][j-1]);
+        }
+
+        if (i+1<array.length){
+            neighbors.add(array[i+1][j]);
+        }
+        if (i+1<array.length&& j+1<array.length){
+            neighbors.add(array[i+1][j+1]);
+        }
+        return neighbors;
+    }
+
     public void CreateArray() {
         array = new Cell[arraysize][arraysize];
         for (int i = 0; i < array.length; i++) {
