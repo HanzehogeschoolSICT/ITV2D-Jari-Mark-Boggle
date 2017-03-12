@@ -1,14 +1,8 @@
 package Model;
 
-import javafx.scene.paint.Color;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.locks.Lock;
+
 
 /**
  * Created by mark on 9-3-2017.
