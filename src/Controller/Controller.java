@@ -38,7 +38,6 @@ public class Controller implements Initializable {
         String set= ((ComboBox)event.getSource()).getSelectionModel().getSelectedItem().toString();
         int arraysize = Integer.parseInt(set.substring(0,set.indexOf("x")));
         model.setarraysize(arraysize);
-        view.updateview();
         bottom.update(model.getallfound());
 
 

@@ -24,7 +24,13 @@ public class Model {
     public Model() {
         dictonary dictonary = new dictonary();
         dict=dictonary.builddic("C:\\Users\\mark\\Dropbox\\jaar 2\\OOP3\\opdr\\week 2\\quicksort\\untitled1\\src\\TextFile\\dict.txt");
+        update();
+    }
+
+    public void update(){
         CreateArray();
+        Constructneighbours();
+        findallneighb();
     }
 
     public void Constructneighbours(){
@@ -34,7 +40,6 @@ public class Model {
                 array[i][j].setNeighbors(possibleNeigbors(i,j));
             }
         }
-    findallneighb();
     }
 
 
@@ -80,8 +85,6 @@ public class Model {
                     array[i][j] = new Cell(i, j, CreateChar(),false);
             }
         }
-                Constructneighbours();
-
 
     }
 
@@ -138,7 +141,7 @@ public class Model {
     // Setters and getters..
     public void setarraysize(int n){
         this.arraysize = n;
-        CreateArray();
+        update();
     }
     public int getArraysize(){
         return arraysize;

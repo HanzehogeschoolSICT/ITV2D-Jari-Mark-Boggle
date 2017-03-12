@@ -36,11 +36,22 @@ public class BottomController implements Initializable {
     public void update(ArrayList<ArrayList<Cell>> allfound){
         this.allfound=allfound;
         fillComboBox();
+        view.updateview();
     }
     public void fillComboBox(){
        printer();
+       solutionsbox.getItems().clear();
+        for (int i= 0;i<allfound.size();i++ ){
+            String str = ": ";
+            for (int j=0;j<allfound.get(i).size();j++) {
+                str+= allfound.get(i).get(j).getContent();
+            }
+            solutionsbox.getItems().add(i+str);
+        }
     }
 
+
+    //add combo box change listener which will only send the needed allfound list... so that it is easy to view
     public void printer(){
         System.out.println("---");
         for (int i= 0;i<allfound.size();i++ ){
