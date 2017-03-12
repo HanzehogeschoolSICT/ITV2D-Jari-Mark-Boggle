@@ -1,6 +1,7 @@
 package View;
 
 import Model.Model;
+import Model.Cell;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +24,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.AbstractCollection;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -48,9 +51,10 @@ public class View implements Initializable {
 
     public void updateview(){
         clear();
+        ArrayList<ArrayList<Cell>> allfound= model.getallfound();
         for (int i=0;i<model.getArraysize(); i++) {
             for (int j=0;j<model.getArraysize(); j++) {
-                DrawRectangle(i,j);
+                DrawRectangle(i,j, allfound);
             }
         }
     }
@@ -68,7 +72,7 @@ public class View implements Initializable {
 
 
     }
-    public void DrawRectangle(int xaxis, int yaxis){
+    public void DrawRectangle(int xaxis, int yaxis,ArrayList<ArrayList<Cell>> allfound){
         double xoffset=  (drawvas.getWidth()/model.getArraysize());
         double yoffset=  (drawvas.getHeight()/model.getArraysize());
         double textheight=yoffset/4;

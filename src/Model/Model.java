@@ -21,6 +21,7 @@ public class Model {
     private boolean[][] visited;
     private ExecutorService exe;
     private HashMap<String,String> dict;
+    private ArrayList<ArrayList<Cell>> allfound;
 
 
 
@@ -90,31 +91,44 @@ public class Model {
 
     public void findallneighb() {
         System.out.println("-------");
+       allfound= new ArrayList<>();
         for (Cell[] c : array){
            for (Cell cell: c){
+               ArrayList<Cell> found = new ArrayList<Cell>();
                cell.setVisited(true);
-               findneighb(cell, Character.toString(cell.getContent()));
+               found.add(cell);
+               findneighb(cell, Character.toString(cell.getContent()), found);
                cell.setVisited(false);
            }
        }
     }
 
-    public void findneighb(Cell cell,  String str) {
+    public void findneighb(Cell cell,  String str,ArrayList<Cell> found) {
         if (!dict.containsKey(str)) {
         return;
         }
         else if (dict.get(str).equals("word")){
             System.out.println(str);
+            for (Cell c: found){
+                System.out.print(c.getContent());
+            }
+            allfound.add(found);
+            System.out.println();
         }
         for (Cell neighbor: cell.getNeighbors()){
             if (!neighbor.Visited()) {
                 neighbor.setVisited(true);
-                findneighb(neighbor, str.concat(String.valueOf(neighbor.getContent())));
+                found.add(neighbor);
+                findneighb(neighbor, str.concat(String.valueOf(neighbor.getContent())),found);
+                found.remove(found.size()-1);
                 neighbor.setVisited(false);
             }
         }
         }
 
+    public ArrayList<ArrayList<Cell>> getallfound(){
+        return this.allfound;
+    }
 
     // Setters and getters..
     public void setarraysize(int n){
