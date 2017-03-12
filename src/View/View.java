@@ -82,7 +82,7 @@ public class View implements Initializable {
         is.setColor(Color.DIMGREY);
         gc.setFill(Color.ALICEBLUE);
         gc.setEffect(is);
-        gc.fillRect(xaxis*xoffset,yaxis*yoffset,xoffset,yoffset);
+        gc.fillRect((xaxis)*xoffset,(yaxis)*yoffset,xoffset,yoffset);
 
         gc.setEffect(null);
 
@@ -92,7 +92,7 @@ public class View implements Initializable {
         gc.setTextAlign(TextAlignment.CENTER);
         gc.setTextBaseline(VPos.CENTER);
 
-        gc.fillText(Character.toString(model.getArray()[xaxis][yaxis].getContent()),xaxis*xoffset+xoffset/2,yaxis*yoffset+xoffset/2);
+        gc.fillText(Character.toString(model.getArray()[xaxis][yaxis].getContent()),(xaxis)*xoffset+xoffset/2,(yaxis)*yoffset+xoffset/2);
         gc.strokeRect(xaxis*xoffset,yaxis*yoffset,xoffset,yoffset);
 
     }

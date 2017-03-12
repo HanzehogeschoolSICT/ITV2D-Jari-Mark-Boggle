@@ -5,42 +5,89 @@ import javafx.scene.paint.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 
 /**
  * Created by mark on 9-3-2017.
  */
 public class Model {
-    private int as;
-
-    private int arraysize = 3;
+    private int arraysize = 2;
     private Cell[][] array;
     private HashSet<String> wordlist=  new HashSet<>();
     //private StringBuilder sb= new StringBuilder();
     private boolean[][] visited;
+    private ExecutorService exe;
+    private HashMap<String,String> dict;
+
 
 
 
     public Model() {
-        ReadtxtFile();
+        dictonary dictonary = new dictonary();
+        dict=dictonary.buildprefix("C:\\Users\\mark\\Dropbox\\jaar 2\\OOP3\\opdr\\week 2\\quicksort\\untitled1\\src\\TextFile\\dict.txt");
+        //ReadtxtFile();
+        //
+        // exe= Executors.newFixedThreadPool(5);
         CreateArray();
-
     }
 
-    public void CreateArray() {
-        array = new Cell[arraysize][arraysize];
-        visited= new boolean[arraysize][arraysize];
+    public void Constructneighbours(){
+
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length; j++) {
-                array[i][j] = new Cell(i, j, CreateChar());
-                visited[i][j]= false;
+                LinkedList<Cell> neighborlist= new LinkedList<Cell>();
+                if (i-1> -1&&j-1> -1){
+                    neighborlist.add(array[i-1][j-1]);
+                }
+
+                if (i-1>-1){
+                    neighborlist.add(array[i-1][j]);
+                }
+
+                if (i-1> -1&&   j+1<array.length){
+                    neighborlist.add(array[i-1][j+1]);
+                }
+
+                if (j+1<array.length){
+                    neighborlist.add(array[i][j+1]);
+                }
+
+                if (j-1>-1){
+                    neighborlist.add(array[i][j-1]);
+                }
+
+                if (i+1<array.length && j-1>-1){
+                    neighborlist.add(array[i+1][j-1]);
+                }
+
+                if (i+1<array.length){
+                    neighborlist.add(array[i+1][j]);
+                }
+                if (i+1<array.length&& j+1<array.length){
+                    neighborlist.add(array[i+1][j+1]);
+                }
+
+
+                array[i][j].setNeighbors(neighborlist);
+            }
+
+        }
+    findallneighb();
+    }
+    public void CreateArray() {
+        array = new Cell[arraysize][arraysize];
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                    array[i][j] = new Cell(i, j, CreateChar(),false);
             }
         }
-        findallneighb();
+                Constructneighbours();
+
+
     }
 
     public char CreateChar() {
@@ -62,52 +109,42 @@ public class Model {
     }
 
     public void findallneighb() {
-        String str = "";
-
-
-        for (int x = 0; x < array.length; x++) {
-            for (int y = 0; y < array.length; y++) {
-                findneighb(array[x][y], visited, str);
-            }
-        }
+        System.out.println("-------");
+        for (Cell[] c : array){
+           for (Cell cell: c){
+               cell.setVisited(true);
+               findneighb(cell, Character.toString(cell.getContent()));
+               cell.setVisited(false);
+           }
+       }
     }
 
-    public void findneighb(Cell cell, boolean[][] visited, String str) {
-        visited[cell.getX()][cell.getY()] = true;
-        str += cell.getContent();
-        if (wordfound(str)) {
+    public void findneighb(Cell cell,  String str) {
+        if (!dict.containsKey(str)) {
+        return;
+        }
+        else if (dict.get(str).equals("word")){
             System.out.println(str);
         }
-        // made here because of lots of recalls which dropped the program speed about 0;
-        int x= cell.getX();
-        int y= cell.getY();
-        int xmax = cell.getX()+1;
-        int ymax = cell.getY()+1;
-
-        // searching for neighbours and thier content..
-        for (;x <= xmax && x<arraysize; x++) {
-            for (; y <= ymax && y<arraysize; y++) {
-                if (x >= 0 && y >= 0 && !visited[x][y]) {
-                    findneighb(array[x][y], visited,str); // recursive calling the method
-                }
+        for (Cell neighbor: cell.getNeighbors()){
+            if (!neighbor.Visited()) {
+                neighbor.setVisited(true);
+                findneighb(neighbor, str.concat(String.valueOf(neighbor.getContent())));
+                neighbor.setVisited(false);
             }
         }
-        str.substring(0,str.length()-1);
-        visited[cell.getX()][cell.getY()]=false;
-    }
+        }
 
-    public boolean wordfound(String str){
-            if (wordlist.contains(str)){
-                return true;
-            }
 
-        return false;
-    }
+
+
 
     // Setters and getters..
     public void setarraysize(int n){
         this.arraysize = n;
         CreateArray();
+       // Constructneighbours();
+
     }
     public int getArraysize(){
         return arraysize;
@@ -115,6 +152,7 @@ public class Model {
     public Cell[][] getArray(){
         return array;
     }
+
 
 
 }
