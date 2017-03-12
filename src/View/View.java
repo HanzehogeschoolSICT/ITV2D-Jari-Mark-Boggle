@@ -31,6 +31,7 @@ import java.util.ResourceBundle;
 
 public class View implements Initializable {
     private Model model;
+    private Cell[][] array;
 
     @FXML
     private Canvas drawvas;
@@ -50,10 +51,11 @@ public class View implements Initializable {
     }
 
     public void updateview(){
+        this.array=model.getArray();
         clear();
         ArrayList<ArrayList<Cell>> allfound= model.getallfound();
-        for (int i=0;i<model.getArraysize(); i++) {
-            for (int j=0;j<model.getArraysize(); j++) {
+        for (int i=0;i<array.length; i++) {
+            for (int j=0;j<array.length; j++) {
                 DrawRectangle(i,j, allfound);
             }
         }
@@ -73,8 +75,8 @@ public class View implements Initializable {
 
     }
     public void DrawRectangle(int xaxis, int yaxis,ArrayList<ArrayList<Cell>> allfound){
-        double xoffset=  (drawvas.getWidth()/model.getArraysize());
-        double yoffset=  (drawvas.getHeight()/model.getArraysize());
+        double xoffset=  (drawvas.getWidth()/array.length);
+        double yoffset=  (drawvas.getHeight()/array.length);
         double textheight=yoffset/4;
 
 
