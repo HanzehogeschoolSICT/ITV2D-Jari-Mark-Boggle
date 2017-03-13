@@ -4,6 +4,8 @@ import Model.Model;
 import Model.Cell;
 import View.View;
 import com.sun.org.apache.xpath.internal.SourceTree;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -41,6 +43,7 @@ public class BottomController implements Initializable {
     public void fillComboBox(){
        printer();
        solutionsbox.getItems().clear();
+       solutionsbox.setPromptText("Amount of words found: "+allfound.size());
         for (int i= 0;i<allfound.size();i++ ){
             String str = ": ";
             for (int j=0;j<allfound.get(i).size();j++) {
@@ -52,6 +55,12 @@ public class BottomController implements Initializable {
 
 
     //add combo box change listener which will only send the needed allfound list... so that it is easy to view
+    public void selectfound(ActionEvent event){
+    String str = ((ComboBox)event.getSource()).getSelectionModel().getSelectedItem().toString().substring(0,1);
+        System.out.println(str);
+        view.updateview();
+    }
+
     public void printer(){
         System.out.println("---");
         for (int i= 0;i<allfound.size();i++ ){
