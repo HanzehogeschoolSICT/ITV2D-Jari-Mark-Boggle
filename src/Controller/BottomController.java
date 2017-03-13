@@ -42,7 +42,7 @@ public class BottomController implements Initializable {
         view.updateview();
     }
     public void fillComboBox(){
-       printer();
+       //printer();
        solutionsbox.getItems().clear();
        solutionsbox.setPromptText("Amount of words found: "+allfound.size());
         for (int i= 0;i<allfound.size();i++ ){
@@ -60,7 +60,6 @@ public class BottomController implements Initializable {
         if (!solutionsbox.getItems().isEmpty()) {
             String str = ((ComboBox) event.getSource()).getSelectionModel().getSelectedItem().toString();
             int index = Integer.parseInt(str.substring(0, str.indexOf(":")));
-            System.out.println(index);
             view.updateview(allfound.get(index));
         }
     }

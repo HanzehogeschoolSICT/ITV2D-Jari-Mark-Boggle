@@ -103,19 +103,19 @@ public class Model {
                ArrayList<Cell> found = new ArrayList<Cell>();
                cell.setVisited(true);
                found.add(cell);
-               findneighb(cell, Character.toString(cell.getContent()), found);
+               findneighb(cell, found);
                cell.setVisited(false);
            }
        }
 
     }
 
-    public void findneighb(Cell cell,  String str,ArrayList<Cell> found) {
-        if (!dict.containsKey(str)) {
+    public void findneighb(Cell cell, ArrayList<Cell> found) {
+        if (!dict.containsKey(CelltoString(found))) {
         return;
         }
-        else if (dict.get(str).equals("word")){
-            System.out.println(str);
+        else if (dict.get(CelltoString(found)).equals("word")){
+            System.out.println(CelltoString(found));
             allfound.add(new ArrayList<Cell>());
             for (Cell c: found){
                 allfound.get(allfound.size()-1).add(c);
@@ -126,11 +126,19 @@ public class Model {
             if (!neighbor.Visited()) {
                 neighbor.setVisited(true);
                 found.add(neighbor);
-                findneighb(neighbor, str.concat(String.valueOf(neighbor.getContent())),found);
+                findneighb(neighbor, found);
                 found.remove(found.size()-1);
                 neighbor.setVisited(false);
             }
         }
+        }
+
+        public String CelltoString(ArrayList<Cell> found){
+        String str= "";
+        for (Cell c: found){
+            str+= c.getContent();
+        }
+        return str;
         }
 
     public ArrayList<ArrayList<Cell>> getallfound(){

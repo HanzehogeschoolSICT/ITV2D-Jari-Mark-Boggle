@@ -81,7 +81,7 @@ public class View implements Initializable {
         is.setOffsetY(2);
         is.setColor(Color.DIMGREY);
         if ( found.contains(array[xaxis][yaxis])){
-            gc.setFill(Color.rgb(240-(80/(found.indexOf(array[xaxis][yaxis])+1)),248,255));
+            gc.setFill(Color.rgb(160+(80/found.size()*found.indexOf(array[xaxis][yaxis])),248,255));
         }
         else {
             gc.setFill(Color.ALICEBLUE);
