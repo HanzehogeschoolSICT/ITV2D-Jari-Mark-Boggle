@@ -55,7 +55,7 @@ public class View implements Initializable {
         clear();
         for (int i=0;i<array.length; i++) {
             for (int j=0;j<array.length; j++) {
-                DrawRectangle(i,j);
+                DrawRectangle(i,j, new ArrayList<Cell>());
             }
         }
     }
@@ -100,34 +100,6 @@ public class View implements Initializable {
 
         gc.fillText(Character.toString(model.getArray()[xaxis][yaxis].getContent()),(xaxis)*xoffset+xoffset/2,(yaxis)*yoffset+xoffset/2);
         gc.strokeRect(xaxis*xoffset,yaxis*yoffset,xoffset,yoffset);
-    }
-    public void DrawRectangle(int xaxis, int yaxis){
-        double xoffset=  (drawvas.getWidth()/array.length);
-        double yoffset=  (drawvas.getHeight()/array.length);
-        double textheight=yoffset/4;
-
-
-        gc.setStroke(Color.DARKGREY);
-
-        InnerShadow is = new InnerShadow();
-        is.setOffsetX(2);
-        is.setOffsetY(2);
-        is.setColor(Color.DIMGREY);
-        gc.setFill(Color.ALICEBLUE);
-        gc.setEffect(is);
-        gc.fillRect((xaxis)*xoffset,(yaxis)*yoffset,xoffset,yoffset);
-
-        gc.setEffect(null);
-
-        gc.setFill(Color.BLACK);
-        gc.setFontSmoothingType(FontSmoothingType.LCD);
-        gc.setFont(Font.font("Helvetica", FontWeight.BOLD, textheight));
-        gc.setTextAlign(TextAlignment.CENTER);
-        gc.setTextBaseline(VPos.CENTER);
-
-        gc.fillText(Character.toString(model.getArray()[xaxis][yaxis].getContent()),(xaxis)*xoffset+xoffset/2,(yaxis)*yoffset+xoffset/2);
-        gc.strokeRect(xaxis*xoffset,yaxis*yoffset,xoffset,yoffset);
-
     }
 
     public void createText(){
