@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.StringJoiner;
 
 /**
  * Created by mark on 11-3-2017.
@@ -56,9 +57,12 @@ public class BottomController implements Initializable {
 
     //add combo box change listener which will only send the needed allfound list... so that it is easy to view
     public void selectfound(ActionEvent event){
-    String str = ((ComboBox)event.getSource()).getSelectionModel().getSelectedItem().toString().substring(0,1);
-        System.out.println(str);
-        view.updateview();
+        if (!solutionsbox.getItems().isEmpty()) {
+            String str = ((ComboBox) event.getSource()).getSelectionModel().getSelectedItem().toString();
+            int index = Integer.parseInt(str.substring(0, str.indexOf(":")));
+            System.out.println(index);
+            view.updateview(allfound.get(index));
+        }
     }
 
     public void printer(){
