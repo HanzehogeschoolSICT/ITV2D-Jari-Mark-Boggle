@@ -2,31 +2,19 @@ package View;
 
 import Model.Model;
 import Model.Cell;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ComboBox;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.net.URL;
-import java.util.AbstractCollection;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 public class View implements Initializable {
@@ -36,8 +24,6 @@ public class View implements Initializable {
     @FXML
     private Canvas drawvas;
     private GraphicsContext gc;
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -102,9 +88,6 @@ public class View implements Initializable {
         gc.strokeRect(xaxis*xoffset,yaxis*yoffset,xoffset,yoffset);
     }
 
-    public void createText(){
-
-    }
     public void clear(){
         gc.clearRect(0,0,drawvas.getWidth(),drawvas.getHeight());
     }

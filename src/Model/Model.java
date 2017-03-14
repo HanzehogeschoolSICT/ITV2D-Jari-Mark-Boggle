@@ -1,25 +1,12 @@
 package Model;
 
 import java.util.*;
-import java.util.concurrent.ExecutorService;
 
-
-/**
- * Created by mark on 9-3-2017.
- */
 public class Model {
-    private int arraysize = 2;
+    private int arraysize = 3;
     private Cell[][] array;
-    private HashSet<String> wordlist=  new HashSet<>();
-    //private StringBuilder sb= new StringBuilder();
-    private boolean[][] visited;
-    private ExecutorService exe;
     private HashMap<String,String> dict;
     private ArrayList<ArrayList<Cell>> allfound;
-    private int foundsize= 0;
-
-
-
 
     public Model() {
         dictonary dictonary = new dictonary();
@@ -41,7 +28,6 @@ public class Model {
             }
         }
     }
-
 
     public LinkedList<Cell> possibleNeigbors(int i,int j){
         LinkedList<Cell> neighbors= new LinkedList<>();
@@ -95,9 +81,7 @@ public class Model {
     }
 
     public void findallneighb() {
-        System.out.println("-------");
-       allfound= new ArrayList<>();
-       foundsize= 0;
+        allfound= new ArrayList<>();
         for (Cell[] c : array){
            for (Cell cell: c){
                ArrayList<Cell> found = new ArrayList<Cell>();
@@ -107,7 +91,6 @@ public class Model {
                cell.setVisited(false);
            }
        }
-
     }
 
     public void findneighb(Cell cell, ArrayList<Cell> found) {
@@ -145,8 +128,6 @@ public class Model {
         return allfound;
     }
 
-
-    // Setters and getters..
     public void setarraysize(int n){
         this.arraysize = n;
         update();

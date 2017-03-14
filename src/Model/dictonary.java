@@ -1,15 +1,11 @@
 package Model;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Scanner;
 
-/**
- * Created by mark on 11-3-2017.
- */
+
 public class dictonary {
 
     public HashMap<String,String> builddic(String filepath) {
@@ -30,6 +26,7 @@ public class dictonary {
             } catch(IOException e){
                 e.printStackTrace();
             }
+
             return dic;
         }
     }

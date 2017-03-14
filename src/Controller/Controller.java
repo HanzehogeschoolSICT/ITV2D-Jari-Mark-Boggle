@@ -6,14 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.locks.Lock;
 
-/**
- * Created by mark on 9-3-2017.
- */
 public class Controller implements Initializable {
 
 
@@ -23,16 +18,8 @@ public class Controller implements Initializable {
     private View view;
     private BottomController bottom;
 
-
-
-
-
     public View getView() {
         return view;
-    }
-
-    public void changecombobox(){
-
     }
     public void SetSize(ActionEvent event){
         String set= ((ComboBox)event.getSource()).getSelectionModel().getSelectedItem().toString();
@@ -45,7 +32,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    for (int i= 2;i<=10;i++ ){
+    for (int i= 2;i<=16;i++ ){
          combobox.getItems().add(i+"x"+i);}
          Init(model,view, bottom);
     }

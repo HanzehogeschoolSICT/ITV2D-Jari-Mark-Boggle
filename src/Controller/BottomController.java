@@ -3,22 +3,14 @@ package Controller;
 import Model.Model;
 import Model.Cell;
 import View.View;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-
 import java.net.URL;
-import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.StringJoiner;
 
-/**
- * Created by mark on 11-3-2017.
- */
 public class BottomController implements Initializable {
     private ArrayList<ArrayList<Cell>> allfound;
     private View view;
@@ -41,6 +33,7 @@ public class BottomController implements Initializable {
         fillComboBox();
         view.updateview();
     }
+
     public void fillComboBox(){
        //printer();
        solutionsbox.getItems().clear();
@@ -54,8 +47,6 @@ public class BottomController implements Initializable {
         }
     }
 
-
-    //add combo box change listener which will only send the needed allfound list... so that it is easy to view
     public void selectfound(ActionEvent event){
         if (!solutionsbox.getItems().isEmpty()) {
             String str = ((ComboBox) event.getSource()).getSelectionModel().getSelectedItem().toString();
@@ -63,19 +54,6 @@ public class BottomController implements Initializable {
             view.updateview(allfound.get(index));
         }
     }
-
-    public void printer(){
-        System.out.println("---");
-        for (int i= 0;i<allfound.size();i++ ){
-            for (int j=0;j<allfound.get(i).size();j++) {
-
-                System.out.print(allfound.get(i).get(j).getContent());
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-
 
 
 }

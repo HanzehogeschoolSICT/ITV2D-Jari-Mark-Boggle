@@ -14,6 +14,6 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Canvas fx:id="drawvas" height="500.0" width="500.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
+      <Canvas fx:id="drawvas" height="600.0" width="600.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
    </children>
 </GridPane>
