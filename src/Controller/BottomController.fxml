@@ -15,7 +15,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <ComboBox fx:id="solutionsbox" onAction="#selectfound" prefHeight="31.0" prefWidth="238.0" GridPane.columnIndex="1" />
+      <ComboBox fx:id="solutionsbox" onAction="#selectfound" prefHeight="31.0" prefWidth="251.0" GridPane.columnIndex="1" />
       <Label prefHeight="21.0" prefWidth="238.0" text="Words found in the current game: " GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
    </children>
 </GridPane>

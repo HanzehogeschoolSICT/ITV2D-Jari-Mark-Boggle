@@ -50,7 +50,7 @@ public class BottomController implements Initializable {
             for (int j=0;j<allfound.get(i).size();j++) {
                 str+= allfound.get(i).get(j).getContent();
             }
-            solutionsbox.getItems().add(i+str);
+            solutionsbox.getItems().add(i+1+str);
         }
     }
 
@@ -59,7 +59,7 @@ public class BottomController implements Initializable {
     public void selectfound(ActionEvent event){
         if (!solutionsbox.getItems().isEmpty()) {
             String str = ((ComboBox) event.getSource()).getSelectionModel().getSelectedItem().toString();
-            int index = Integer.parseInt(str.substring(0, str.indexOf(":")));
+            int index = Integer.parseInt(str.substring(0, str.indexOf(":")))-1;
             view.updateview(allfound.get(index));
         }
     }
