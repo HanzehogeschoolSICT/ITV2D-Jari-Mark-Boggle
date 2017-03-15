@@ -35,7 +35,6 @@ public class BottomController implements Initializable {
     }
 
     public void fillComboBox(){
-       //printer();
        solutionsbox.getItems().clear();
        solutionsbox.setPromptText("Amount of words found: "+allfound.size());
         for (int i= 0;i<allfound.size();i++ ){
