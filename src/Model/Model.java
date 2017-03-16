@@ -98,7 +98,7 @@ public class Model {
         return;
         }
         else if (dict.get(CelltoString(found)).equals("word")){
-            System.out.println(CelltoString(found));
+            //System.out.println(CelltoString(found));
             allfound.add(new ArrayList<Cell>());
             for (Cell c: found){
                 allfound.get(allfound.size()-1).add(c);
