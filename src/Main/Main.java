@@ -1,9 +1,9 @@
 package Main;
 
-import Controller.*;
+import Controller.BottomController;
+import Controller.Controller;
 import Model.Model;
 import View.View;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,11 +16,15 @@ public class Main extends Application {
     private Controller controller;
     private BottomController bottom;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         this.model = new Model();
         this.controller = new Controller();
-        this.bottom= new BottomController();
+        this.bottom = new BottomController();
         this.view = new View();
 
         // Creating main pane;
@@ -37,13 +41,13 @@ public class Main extends Application {
         FXMLLoader controlloader = new FXMLLoader(getClass().getResource("/Controller/Controller.fxml"));
         controlloader.setController(controller);
         root.setTop(controlloader.load());
-        controller.Init(model,view,bottom);
+        controller.Init(model, view, bottom);
 
         // setting up the bottom controller and init
         FXMLLoader bottomloader = new FXMLLoader(getClass().getResource("/Controller/BottomController.fxml"));
         bottomloader.setController(bottom);
         root.setBottom(bottomloader.load());
-        bottom.Init(model,view);
+        bottom.Init(model, view);
 
 
         // futher initialization
@@ -52,10 +56,5 @@ public class Main extends Application {
         primaryStage.show();
 
 
-    }
-
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

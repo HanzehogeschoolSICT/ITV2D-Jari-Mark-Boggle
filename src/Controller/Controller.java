@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,25 +22,25 @@ public class Controller implements Initializable {
     public View getView() {
         return view;
     }
-    public void SetSize(ActionEvent event){
-        String set= ((ComboBox)event.getSource()).getSelectionModel().getSelectedItem().toString();
-        int arraysize = Integer.parseInt(set.substring(0,set.indexOf("x")));
+
+    public void SetSize(ActionEvent event) {
+        String set = ((ComboBox) event.getSource()).getSelectionModel().getSelectedItem().toString();
+        int arraysize = Integer.parseInt(set.substring(0, set.indexOf("x")));
         model.setarraysize(arraysize);
         bottom.update(model.getallfound());
-
-
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    for (int i= 2;i<=16;i++ ){
-         combobox.getItems().add(i+"x"+i);}
-         Init(model,view, bottom);
+        for (int i = 2; i <= 16; i++) {
+            combobox.getItems().add(i + "x" + i);
+        }
+        Init(model, view, bottom);
     }
 
-    public void Init(Model model, View view,BottomController bottom){
-        this.model= model;
-        this.view =view;
-        this.bottom= bottom;
+    public void Init(Model model, View view, BottomController bottom) {
+        this.model = model;
+        this.view = view;
+        this.bottom = bottom;
     }
 }
