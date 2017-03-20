@@ -10,7 +10,7 @@ public class Model {
 
     public Model() {
         dictonary dictonary = new dictonary();
-        dict=dictonary.builddic("C:\\Users\\mark\\Dropbox\\jaar 2\\OOP3\\opdr\\week 2\\quicksort\\untitled1\\src\\TextFile\\dict.txt");
+        dict=dictonary.builddic("src/TextFile/dict.txt");
         update();
     }
 
